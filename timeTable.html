@@ -1,38 +1,125 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>MPlus Gyms</title>
     <link href="main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bungee+Outline" rel="stylesheet">
 </head>
-    <body>
-        <header class="header">
-            <nav class="main-nav">
-                <img src="images/logo.nav.png" alt="company logo" class="company-logo">
-              <p>MacePlus Gyms</p>
-                <ul class="tabs">
-                    <li><a href = "index.html" >Home</a></li>
-                    <li><a href="timeTable.html" class="selected">Time Table</a></li>
-                    <li><a href="TheTeam.html">The Team</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </nav>
-          
-        </header>
+
+<body>
+    <header class="header">
+        <img src="images/logo.nav.png" alt="company logo" class="company-logo">
+        <nav class="main-nav">
+            <p>MacePlus Gyms</p>
+            <p class="m-plus">Mace+ Gyms</p>
+            <a href="#" id="menu-icon"></a>
+            <ul class="tabs">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="timeTable.html" class="selected">Time Table</a></li>
+                <li><a href="TheTeam.html">The Team</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <h1>Coming Soon</h1>
+
+    <div class="timeTable">
+
+    </div>
+
+
+    <footer>
+        <a href="https://twitter.com/innovsante"><img src="images/twitter-wrap.png" alt="twitter logo" class="social-icon"></a>
+        <a href="https://www.facebook.com/innovsante"><img src="images/facebook-wrap.png" alt="facebook logo" class="social-icon"></a>
+        <p>&copy; MacePlus Gyms 2017</p>
+    </footer>
+    <script>
+        const appointments = [{
+                day: "Monday",
+                lesson: "bodyPump",
+                hour: 5
+            },
+            {
+                day: "Monday",
+                lesson: "IronPump",
+                hour: 6
+            },
+            {
+                day: "Tuesday",
+                lesson: "bodyPump",
+                hour: 5
+            },
+        ]
+
+        function getByDay(day) {
+            return appointments.filter((appointment) => {
+                return appointment.day === day
+            });
+        };
+
+        function getByLesson(lesson) {
+            return appointments.filter((appointment) => {
+                return appointment.lesson === lesson
+
+            });
+        }
+
+        function getByHour(hour) {
+            return appointments.filter((appointment) => {
+                return appointment.hour === hour;
+            });
+            
+            
+        }
+        const week = [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+        ]
+
+
+        const table = document.createElement("TABLE");
+        const tableHeader = document.createElement("TR")
         
+        tableHeader.appendChild(document.createElement("TD") )
         
+
+        week.forEach((day) => {
+            const cell = document.createElement("TD");
+            cell.textContent = day;
+            tableHeader.appendChild(cell);
+        });
         
-        
-         
-        
-        
-        
-        
-        <footer>
-            <a href="https://twitter.com/innovsante"><img src="images/twitter-wrap.png" alt="twitter logo" class="social-icon"></a>
-            <a href="https://www.facebook.com/innovsante"><img src="images/facebook-wrap.png" alt="facebook logo" class="social-icon"></a>
-            <p>&copy; MacePlus Gyms 2017</p>
-        </footer>
-    </body>
+        table.appendChild(tableHeader) // appends table header to the const table
+
+
+
+
+        for (let hour = 8; hour <= 23; hour++) {
+            const row = document.createElement("TR");
+            const rowHeader = document.createElement("TD"); // creating a cell with the hours in 
+                rowHeader.textContent = hour + ":00"; // creating a cell with the hours in 
+            row.appendChild(rowHeader);
+            week.forEach((day) => {
+                const cell = document.createElement("TD");
+                cell.textContent = "-";
+                row.appendChild(cell);
+            });
+            table.appendChild(row);
+
+        }
+
+        document.querySelector(".timeTable").appendChild(table); // the queryselector has returned an html element and we are able to call thing straight off it.
+
+    </script>
+</body>
+
 </html>
